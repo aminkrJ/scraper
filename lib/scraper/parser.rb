@@ -16,7 +16,6 @@ module Scraper
 
     def collect_nutrition_facts
       @browser.select '100 grams', from: 'serving'
-      #collect nutrition facts
     end
   end
 end

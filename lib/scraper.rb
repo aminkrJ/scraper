@@ -3,13 +3,14 @@ require 'capybara/poltergeist'
 
 module Scraper
 
-  autoload :Exception, 'Scraper/parser'
+  autoload :Parser, 'Scraper/parser'
 
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: false)
   end
 
   Capybara.default_driver = :poltergeist
+
 end
 
 
