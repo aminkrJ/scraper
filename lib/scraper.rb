@@ -3,7 +3,8 @@ require 'capybara/poltergeist'
 
 module Scraper
 
-  autoload :Nutrition, 'Scraper/nutrition'
+  autoload :Engine, 'Scraper/engine'
+  autoload :Exception, 'Scraper/parser'
 
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: false)

@@ -1,16 +1,16 @@
 module Scraper
-  class Nutrition
+  class Engine
     attr_accessor :url
 
     def initialize(url)
       @url = url
+      raise ArgumentError.new("url cannot be blank") if url.nil?
     end
 
-    def gather
+    def visit
       browser = Capybara.current_session
       browser.visit @url
-
-      browser.select '100 grams', from: 'serving'
+      return browser
     end
   end
 end
