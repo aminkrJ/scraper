@@ -1,17 +1,22 @@
 module Scraper
   class Parser
-    attr_accessor :browser
+    attr_accessor :url
+    attr_reader :browser
 
-    def initialize(browser)
-      @browser = browser
+    def initialize(url)
+      @url = url
+      raise ArgumentError.new("url cannot be blank") if url.nil?
     end
 
     def parse
-      @browser.select '100 grams', from: 'serving'
+      @browser = Capybara.current_session
+      @browser.visit @url
       collect_nutrition_facts
     end
 
     def collect_nutrition_facts
+      @browser.select '100 grams', from: 'serving'
+      #collect nutrition facts
     end
   end
 end

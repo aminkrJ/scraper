@@ -3,7 +3,6 @@ require 'capybara/poltergeist'
 
 module Scraper
 
-  autoload :Engine, 'Scraper/engine'
   autoload :Exception, 'Scraper/parser'
 
   Capybara.register_driver :poltergeist do |app|
