@@ -1,10 +1,12 @@
+$: << File.dirname(__FILE__)
+
 require "scraper/version"
 require 'capybara/poltergeist'
 require 'pry'
 
-module Scraper
+require 'scraper/parser'
 
-  autoload :Parser, 'Scraper/parser'
+module Scraper
 
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: false)
