@@ -5,9 +5,15 @@ gemspec
 
 gem "capybara"
 gem "poltergeist"
-gem "rspec"
-gem "pry"
-gem "fuubar"
-gem "vcr"
-gem "webmock"
-gem "guard-rspec"
+
+group :test, :development do
+  gem "pry"
+  gem "fuubar"
+end
+
+group :test do
+  gem "rspec"
+  gem "vcr"
+  gem "webmock"
+  gem "guard-rspec"
+end
