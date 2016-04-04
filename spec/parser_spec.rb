@@ -6,11 +6,10 @@ describe Scraper::Parser do
   end
 
   describe "parse" do
-    it "creates fixture" do
-      VCR.use_cassette('nutrition_facts') do
-        response = Net::HTTP.get_response(URI("http://nutritiondata.self.com/facts/vegetables-and-vegetable-products/3019/2"))
-        expect(response.body).to match(/Squash, zucchini, baby, raw/)
-      end
+    let(:url) { "http://nutritiondata.self.com/facts/vegetables-and-vegetable-products/3019/2" }
+    it "works!" do
+      scraper = Scraper::Parser.new url
+      scraper.parse
     end
   end
 end

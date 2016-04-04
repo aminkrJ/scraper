@@ -1,5 +1,6 @@
 require "scraper/version"
 require 'capybara/poltergeist'
+require 'pry'
 
 module Scraper
 
