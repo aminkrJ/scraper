@@ -9,7 +9,6 @@ require 'scraper/parser'
 
 module Scraper
 
-  Phantomjs.path
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: false, phantomjs: Phantomjs.path)
   end
