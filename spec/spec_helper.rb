@@ -6,6 +6,7 @@ require 'vcr'
 require 'webmock/rspec'
 
 RSpec.configure do |config|
+  config.filter_run :focus => true
 end
 
 VCR.configure do |config|
