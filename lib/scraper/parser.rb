@@ -8,26 +8,36 @@ module Scraper
       @nutrition_facts = []
       @per_serving_amount = per_serving_amount
       @per_serving_unit = per_serving_unit
+      @browser = Capybara.current_session
+
+      #TODO URI.parse
       raise ArgumentError.new("url cannot be blank") if url.nil?
     end
 
     def parse
-      @browser = Capybara.current_session
-      @browser.visit @url
+      visit_uri
 
       collect_nutrition_facts_per_serving("#{@per_serving_amount} #{@per_serving_unit}")
 
       all_nutrition_facts = @browser.all(:xpath, "//*[contains(concat(' ', normalize-space(@class), ' '), ' nf1 ')]/..")
       all_nutrition_facts.collect do |nf|
-        name = nf.find_css('.nf1').first.all_text
+
+        name   = nf.find_css('.nf1').first.all_text
         amount = nf.find_css('.nf2').first.all_text
-        unit = nf.find_css('.nf3').first.all_text
+        unit   = nf.find_css('.nf3').first.all_text
+
         @nutrition_facts << NutritionFact.new(name, amount, unit) if(amount != "~")
       end
     end
 
     def collect_nutrition_facts_per_serving(serving_amount)
       @browser.select serving_amount, from: 'serving'
+    end
+
+    private
+
+    def visit_uri
+      @browser.visit @url
     end
   end
 
